@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {Container} from 'react-bootstrap'
+import './App.scss';
+import React,{useState} from 'react'
+import Header from './components/header/Header';
+import Sidebar from './components/sidebar/Sidebar';
+import HomeScreen from './screens/homescreen/HomeScreen';
 
 function App() {
+  const [toggle, toggleSidebar] = useState(false)
+  const HandleToggleBar = ()=>toggleSidebar(value =>!value)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header HandleToggleBar={HandleToggleBar}/> 
+    <div className="app_container border border-info">
+    <Sidebar toggle={toggle} HandleToggleBar={HandleToggleBar} />
+      <Container fluid className="app_main border border-warning">
+         <HomeScreen />
+       
+      </Container>
+      </div>
+    YouTube Clone
+    </>
   );
 }
 
